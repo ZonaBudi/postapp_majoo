@@ -18,7 +18,7 @@ mysql:
   port: 3306
   password: password
   user: root
-  database: "post_app" 
+  database: "post" 
 ```
 
 2. Get Dependecy
