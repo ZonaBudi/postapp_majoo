@@ -34,6 +34,7 @@ func NewReportHttp(app *chi.Mux, reportService port.ReportService) {
 // Report Merchant godoc
 // @Summary      List Transaction Merchant
 // @Description  get list transaction merchant
+// @Security 	 Bearer
 // @Tags         transactions
 // @Accept       json
 // @Produce      json
@@ -61,9 +62,10 @@ func (_instance *transactionHandlerHttp) GetReportMerchant(w http.ResponseWriter
 }
 
 // Report Outlet godoc
-// @Summary      List Transaction Merchant
-// @Description  get list transaction merchant
+// @Summary      List Transaction Outlet
+// @Description  get list transaction Outlet
 // @Tags         transactions
+// @Security	 Bearer
 // @Accept       json
 // @Produce      json
 // @Param        page   	query     int  false  "page filter"  	   minimum(1)
@@ -71,7 +73,7 @@ func (_instance *transactionHandlerHttp) GetReportMerchant(w http.ResponseWriter
 // @Param        outlet_id  path      int  true   "Outlet ID"          minimum(1)
 // @Success      200 {object} response.AppSuccess
 // @Failure      default {object}  response.AppError
-// @Router       /report-merchant [get]
+// @Router       /report-outlet [get]
 func (_instance *transactionHandlerHttp) GetReportOutlet(w http.ResponseWriter, r *http.Request) {
 	paginate, err := paginator.Paginate(r)
 	if err != nil {

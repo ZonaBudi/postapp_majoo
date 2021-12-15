@@ -68,6 +68,11 @@ var doc = `{
         },
         "/report-merchant": {
             "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
                 "description": "get list transaction merchant",
                 "consumes": [
                     "application/json"
@@ -79,6 +84,56 @@ var doc = `{
                     "transactions"
                 ],
                 "summary": "List Transaction Merchant",
+                "parameters": [
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "page filter",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 5,
+                        "type": "integer",
+                        "description": "limit data filter",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.AppSuccess"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.AppError"
+                        }
+                    }
+                }
+            }
+        },
+        "/report-outlet": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "get list transaction Outlet",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "List Transaction Outlet",
                 "parameters": [
                     {
                         "minimum": 1,
@@ -151,6 +206,13 @@ var doc = `{
                 "meta": {}
             }
         }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
     }
 }`
 
@@ -170,7 +232,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "/",
 	Schemes:     []string{},
 	Title:       "post App Majo Test APIs",
-	Description: "Only Test Purpose",
+	Description: "Only Test Purpose, If you Not Authorized, Please Login and input into security header with format Bearer token",
 }
 
 type s struct{}

@@ -24,7 +24,8 @@ info:
   contact:
     email: zona.budi11@gmail.com
     name: API Support
-  description: Only Test Purpose
+  description: Only Test Purpose, If you Not Authorized, Please Login and input into
+    security header with format Bearer token
   title: post App Majo Test APIs
   version: "1.0"
 paths:
@@ -70,6 +71,38 @@ paths:
         minimum: 5
         name: limit
         type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.AppSuccess'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/response.AppError'
+      security:
+      - Bearer: []
+      summary: List Transaction Merchant
+      tags:
+      - transactions
+  /report-outlet:
+    get:
+      consumes:
+      - application/json
+      description: get list transaction Outlet
+      parameters:
+      - description: page filter
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - description: limit data filter
+        in: query
+        minimum: 5
+        name: limit
+        type: integer
       - description: Outlet ID
         in: path
         minimum: 1
@@ -87,7 +120,14 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/response.AppError'
-      summary: List Transaction Merchant
+      security:
+      - Bearer: []
+      summary: List Transaction Outlet
       tags:
       - transactions
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"
