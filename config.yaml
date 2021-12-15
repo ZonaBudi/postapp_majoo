@@ -1,0 +1,10 @@
+server:
+  host: 0.0.0.0
+  port: 8080
+  secret_access: "majo_app_pos_secret"
+mysql:
+  host: localhost
+  port: 3306
+  password: password
+  user: root
+  database: "post_app"
